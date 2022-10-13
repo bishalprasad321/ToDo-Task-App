@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/to_do_row_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/row_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/priority_indicator"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/red"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintRight_toRightOf="@id/to_do_row_background"
+            app:layout_constraintTop_toTopOf="@id/to_do_row_background" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/dummy_tittle"
+            android:textSize="20sp"
+            android:fontFamily="@font/architects_daughter"
+            android:textStyle="bold"
+            android:textColor="?attr/colorPrimary"
+            app:layout_constraintRight_toRightOf="@id/to_do_row_background"
+            app:layout_constraintLeft_toLeftOf="@id/to_do_row_background"
+            app:layout_constraintTop_toTopOf="@id/to_do_row_background"/>
+
+        <TextView
+            android:id="@+id/description_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/architects_daughter"
+            android:maxLength="300"
+            android:maxLines="10"
+            android:text="@string/dummy_task_content"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/to_do_row_background"
+            app:layout_constraintRight_toRightOf="@id/to_do_row_background"
+            app:layout_constraintTop_toBottomOf="@id/titleText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
