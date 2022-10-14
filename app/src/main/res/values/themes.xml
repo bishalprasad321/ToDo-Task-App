@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.TaskToDo" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#880e4f</item>
-        <item name="colorPrimaryVariant">#560027</item>
+        <item name="colorPrimary">@color/orange_700</item>
+        <item name="colorPrimaryVariant">@color/orange_900</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#c51162</item>
-        <item name="colorSecondaryVariant">#8e0038</item>
+        <item name="colorSecondary">@color/orange_700</item>
+        <item name="colorSecondaryVariant">@color/orange_900</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>

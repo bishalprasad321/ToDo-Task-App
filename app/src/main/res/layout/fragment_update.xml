@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.update.UpdateFragment"
-    android:background="@color/white"
+    android:background="@color/dark_grey"
     android:padding="24dp">
 
     <EditText
@@ -19,8 +19,8 @@
         android:inputType="text"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:textColor="?attr/colorPrimaryVariant"
-        android:textColorHint="?attr/colorPrimaryVariant"
+        android:textColor="?attr/colorPrimary"
+        android:textColorHint="?attr/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,8 +58,8 @@
         android:paddingStart="16dp"
         android:paddingTop="12dp"
         android:paddingEnd="16dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/dark_grey"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_grey"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

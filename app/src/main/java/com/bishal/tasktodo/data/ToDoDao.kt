@@ -3,7 +3,6 @@ package com.bishal.tasktodo.data
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
-import androidx.room.DeleteTable
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -25,6 +24,6 @@ interface ToDoDao {
     @Delete
     suspend fun deleteData(toDoData: ToDoData)
 
-    @Query("DELETE from to_do_table")
+    @Query(/* value = */ "DELETE from to_do_table")
     suspend fun deleteAll()
 }
