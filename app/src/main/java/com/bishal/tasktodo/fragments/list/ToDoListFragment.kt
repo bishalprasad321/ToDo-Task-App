@@ -18,6 +18,8 @@ import com.bishal.tasktodo.data.models.ToDoData
 import com.bishal.tasktodo.data.viewmodel.ToDoViewModel
 import com.bishal.tasktodo.fragments.SharedViewModel
 import com.bishal.tasktodo.fragments.list.adapter.ToDoListAdapter
+import com.bishal.tasktodo.utils.hideKeyboard
+import com.bishal.tasktodo.utils.observeOnce
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import jp.wasabeef.recyclerview.animators.LandingAnimator
@@ -68,7 +70,11 @@ class ToDoListFragment : Fragment(), SearchView.OnQueryTextListener {
             findNavController().navigate(R.id.action_toDoList_to_addFragment)
         }
 
+        // Set Menu
         setHasOptionsMenu(true)
+
+        // Hide soft Keyboard
+        hideKeyboard(requireActivity())
 
         return view
     }
@@ -132,8 +138,8 @@ class ToDoListFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.delete_all_menu -> confirmDeletion()
-            R.id.high_priority_menu -> mToDoViewModel.sortByHighPriority.observe(this){ adapter.setData(it) }
-            R.id.low_priority_menu -> mToDoViewModel.sortByLowPriority.observe(this) { adapter.setData(it) }
+            R.id.high_priority_menu -> mToDoViewModel.sortByHighPriority.observe(viewLifecycleOwner) { adapter.setData(it) }
+            R.id.low_priority_menu -> mToDoViewModel.sortByLowPriority.observe(viewLifecycleOwner) { adapter.setData(it) }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -155,7 +161,7 @@ class ToDoListFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchThroughDatabase(query: String) {
         val searchQuery = "%$query%"
 
-        mToDoViewModel.searchDatabase(searchQuery).observe(this) { list ->
+        mToDoViewModel.searchDatabase(searchQuery).observeOnce(viewLifecycleOwner) { list ->
             list?.let {
                 adapter.setData(it)
             }
