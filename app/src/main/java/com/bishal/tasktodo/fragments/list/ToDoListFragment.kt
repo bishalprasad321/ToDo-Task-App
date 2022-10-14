@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -23,7 +24,7 @@ import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 
 @Suppress("DEPRECATION")
-class ToDoListFragment : Fragment() {
+class ToDoListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
@@ -117,6 +118,10 @@ class ToDoListFragment : Fragment() {
     )
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.to_do_list_menu, menu)
+
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as? SearchView
+        searchView?.setOnQueryTextListener(this)
     }
 
     @Deprecated("Deprecated in Java", ReplaceWith(
@@ -125,10 +130,36 @@ class ToDoListFragment : Fragment() {
         )
     )
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.delete_all_menu){
-            confirmDeletion()
+        when (item.itemId){
+            R.id.delete_all_menu -> confirmDeletion()
+            R.id.high_priority_menu -> mToDoViewModel.sortByHighPriority.observe(this){ adapter.setData(it) }
+            R.id.low_priority_menu -> mToDoViewModel.sortByLowPriority.observe(this) { adapter.setData(it) }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null){
+            searchThroughDatabase(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query != null){
+            searchThroughDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchThroughDatabase(query: String) {
+        val searchQuery = "%$query%"
+
+        mToDoViewModel.searchDatabase(searchQuery).observe(this) { list ->
+            list?.let {
+                adapter.setData(it)
+            }
+        }
     }
 
     // Show AlertDialog for confirmation of Deletion

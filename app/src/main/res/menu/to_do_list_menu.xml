@@ -13,16 +13,14 @@
 
         <item
             android:id="@+id/sortBy_menu"
-            android:title="@string/sort_by">
+            android:title="@string/sort_by"
+            android:icon="@drawable/ic_filter"
+            app:showAsAction="ifRoom">
 
             <menu>
                 <item
                     android:id="@+id/high_priority_menu"
                     android:title="@string/priority_high"/>
-
-                <item
-                    android:id="@+id/medium_priority_menu"
-                    android:title="@string/priority_medium"/>
 
                 <item
                     android:id="@+id/low_priority_menu"
