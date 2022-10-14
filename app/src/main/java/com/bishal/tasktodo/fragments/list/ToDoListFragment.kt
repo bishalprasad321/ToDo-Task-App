@@ -9,12 +9,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bishal.tasktodo.R
+import com.bishal.tasktodo.data.models.ToDoData
 import com.bishal.tasktodo.data.viewmodel.ToDoViewModel
 import com.bishal.tasktodo.fragments.SharedViewModel
+import com.bishal.tasktodo.fragments.list.adapter.ToDoListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 
 @Suppress("DEPRECATION")
@@ -26,6 +31,7 @@ class ToDoListFragment : Fragment() {
 
     private lateinit var emptyImage : ImageView
     private lateinit var emptyText : TextView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,13 +40,18 @@ class ToDoListFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_to_do_list, container, false)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView = view.findViewById(R.id.recyclerView)
 
         emptyImage = view.findViewById(R.id.emptyTaskView)
         emptyText = view.findViewById(R.id.emptyText)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.itemAnimator = LandingAnimator().apply {
+            addDuration = 300
+        }
+
+        swipeToDelete(recyclerView)
 
         mToDoViewModel.getAllData.observe(viewLifecycleOwner) { data ->
             mSharedViewModel.checkIfDatabaseEmpty(data)
@@ -70,6 +81,33 @@ class ToDoListFragment : Fragment() {
             emptyImage.visibility = View.INVISIBLE
             emptyText.visibility = View.INVISIBLE
         }
+    }
+
+    private fun swipeToDelete(recyclerView: RecyclerView){
+        val swipeToDeleteCallback = object : SwipeToDelete() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val deletedItem = adapter.dataList[viewHolder.adapterPosition]
+                mToDoViewModel.deleteData(deletedItem)
+                adapter.notifyItemChanged(viewHolder.adapterPosition)
+                // Restore the deleted item
+                restoreDeletedData(viewHolder.itemView, deletedItem, viewHolder.adapterPosition)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    private fun restoreDeletedData(view: View, deletedItem: ToDoData, position: Int){
+        val snackBar = Snackbar.make(
+            view, "Deleted '${deletedItem.title}'",
+            Snackbar.LENGTH_LONG
+        )
+        snackBar.setAction("Undo"){
+            mToDoViewModel.insertData(deletedItem)
+            adapter.notifyItemChanged(position)
+            Toast.makeText(requireContext(), "'${deletedItem.title}' Restored!", Toast.LENGTH_SHORT).show()
+        }
+        snackBar.show()
     }
 
     @Deprecated("Deprecated in Java", ReplaceWith(

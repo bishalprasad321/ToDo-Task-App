@@ -1,6 +1,5 @@
-package com.bishal.tasktodo.fragments.list
+package com.bishal.tasktodo.fragments.list.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +8,17 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bishal.tasktodo.R
 import com.bishal.tasktodo.data.models.Priority
 import com.bishal.tasktodo.data.models.ToDoData
+import com.bishal.tasktodo.fragments.list.ToDoListFragmentDirections
 
 
 class ToDoListAdapter: RecyclerView.Adapter<ToDoListAdapter.ListViewHolder>() {
 
-    private var dataList = emptyList<ToDoData>()
+    var dataList = emptyList<ToDoData>()
 
     class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -34,7 +35,8 @@ class ToDoListAdapter: RecyclerView.Adapter<ToDoListAdapter.ListViewHolder>() {
         description.text = dataList[position].description
 
         updateAction.setOnClickListener{
-            val action = ToDoListFragmentDirections.actionToDoListToUpdateFragment(dataList[position])
+            val action =
+                ToDoListFragmentDirections.actionToDoListToUpdateFragment(dataList[position])
             holder.itemView.findNavController().navigate(action)
         }
 
@@ -58,9 +60,10 @@ class ToDoListAdapter: RecyclerView.Adapter<ToDoListAdapter.ListViewHolder>() {
         return dataList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setData(toDoData: List<ToDoData>){
+        val toDoDiffUtil = ToDoDiffUtil(dataList, toDoData)
+        val toDoDiffResult = DiffUtil.calculateDiff(toDoDiffUtil)
         this.dataList = toDoData
-        notifyDataSetChanged()
+        toDoDiffResult.dispatchUpdatesTo(this)
     }
 }

@@ -38,7 +38,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/architects_daughter"
             android:textStyle="bold"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="@color/orange_title"
             app:layout_constraintRight_toRightOf="@id/to_do_row_background"
             app:layout_constraintLeft_toLeftOf="@id/to_do_row_background"
             app:layout_constraintTop_toTopOf="@id/to_do_row_background"/>
