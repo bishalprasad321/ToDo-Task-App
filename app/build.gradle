@@ -89,4 +89,7 @@ dependencies {
 
     // RecyclerView Animations
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+
+    // Splashscreen animations
+    implementation 'com.airbnb.android:lottie:5.2.0'
 }

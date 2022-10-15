@@ -17,6 +17,8 @@
     <string name="delete">Delete</string>
     <string name="dummy_tittle">My ToDo Task Title</string>
     <string name="dummy_task_content">This is a dummy text for ToDo Task application uses. Please ignore this text.</string>
+    <string name="splash_screen_logo">Splash Screen Logo</string>
+    <string name="dev_name">By\nBishal</string>
 
     <string-array name="priorities">
         <item>High Priority</item>
