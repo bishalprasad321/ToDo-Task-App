@@ -35,7 +35,7 @@
         android:layout_height="60dp"
         android:entries="@array/priorities"
         android:layout_marginTop="8dp"
-        android:popupBackground="@color/light_grey"
+        android:popupBackground="@color/white"
         android:elevation="8dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
