@@ -11,29 +11,40 @@
         android:id="@+id/logo_anim_view"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        app:lottie_colorFilter="@color/orange_700"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/splash_screen_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_name_text"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/anim_loading"
+        app:lottie_repeatCount="3"/>
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:src="@drawable/to_do_icon"
+        android:contentDescription="@string/app_logo"
+        app:layout_constraintVertical_bias="0.4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45"
-        app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/to_do_logo"
-        app:lottie_repeatCount="3" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
+        android:id="@+id/app_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:fontFamily="@font/architects_daughter"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:textColor="@color/orange_700"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo_anim_view"/>
+        app:layout_constraintTop_toBottomOf="@id/logo_image"/>
 
     <TextView
         android:layout_width="wrap_content"

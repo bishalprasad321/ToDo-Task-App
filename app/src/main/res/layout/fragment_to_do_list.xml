@@ -42,7 +42,7 @@
         android:alpha="0.37"
         android:contentDescription="@string/noToDoTask"
         android:src="@drawable/ic_empty_icon"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
