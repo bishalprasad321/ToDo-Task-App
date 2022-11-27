@@ -20,3 +20,13 @@
   <img src='https://user-images.githubusercontent.com/70791507/204146252-940d273c-1e03-4efb-8dd0-33196451a632.jpg' width='200' height='400'>  |  <img src='https://user-images.githubusercontent.com/70791507/204146505-60f3c905-3b22-4b83-9623-07c0dcc3597f.jpg' width='200' height='400'>  |  <img src='https://user-images.githubusercontent.com/70791507/204146595-7ed5c2ac-0b51-4dac-80da-ef00fcc5a170.jpg' width='200' height='400'>  |  <img src='https://user-images.githubusercontent.com/70791507/204146769-09ae5003-6014-4cda-b23f-130aa3bf918c.jpg' width='200' height='400'>
 
 </div>
+<br>
+<h2>
+  Description
+</h2>
+<p>
+  <ul>
+    <li> Built with <a href="https://kotlinlang.org/">Kotlin</a> + <a href="https://developer.android.com/studio">Android Studio</a> using android's <a href="https://developer.android.com/topic/libraries/architecture/viewmodel">MVMM Artichecture Components</a>. </li>
+    <li> App uses the <a href="https://developer.android.com/jetpack/androidx/releases/room">Room Database</a> for more Robust data access over SQlite. </li>
+  </ul>
+</p>
