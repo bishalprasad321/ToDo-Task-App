@@ -27,6 +27,21 @@
 <p>
   <ul>
     <li> Built with <a href="https://kotlinlang.org/">Kotlin</a> + <a href="https://developer.android.com/studio">Android Studio</a> using android's <a href="https://developer.android.com/topic/libraries/architecture/viewmodel">MVMM Artichecture Components</a>. </li>
-    <li> App uses the <a href="https://developer.android.com/jetpack/androidx/releases/room">Room Database</a> for more Robust data access over SQlite. </li>
+    <li> App uses the <a href="https://developer.android.com/jetpack/androidx/releases/room">Room Database</a> for more Robust data access over <a href="https://developer.android.com/training/data-storage/sqlite">SQlite</a>.</li>
+    <li> The Splash Screen of the app has been implemented using <a href="https://lottiefiles.com/">Lottie Animations</a>. </li>
+  </ul>
+</p>
+
+<h2>
+  Functionalities
+</h2>
+<p>
+  <ul>
+    <li> Search Query across the Room Database </li>
+    <li> Update Data </li>
+    <li> Add new notes/task to Database </li>
+    <li> Delete All notes/tasks at once from the database </li>
+    <li> Swipe Left to Delete a particular task </li>
+    <li> Filter or Sort the tasks/notes on the basis of Priority (i.e. Either Low or High) </li>
   </ul>
 </p>
